@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Event Registration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+        }
+        .form-container {
+            width: 350px;
+            margin: 60px auto;
+            padding: 20px;
+            background: #ffffff;
+            border-radius: 6px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h2 {
+            text-align: center;
+        }
+        label {
+            display: block;
+            margin-top: 12px;
+        }
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            margin-top: 20px;
+            padding: 10px;
+            background: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .error {
+            color: red;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <h2>Event Registration</h2>
+
+    <form id="registrationForm">
+        <label>
+            Full Name:
+            <input type="text" id="name" required>
+        </label>
+
+        <label>
+            Email:
+            <input type="email" id="email" required>
+        </label>
+
+        <label>
+            Phone Number:
+            <input type="tel" id="phone" required>
+        </label>
+
+        <label>
+            Event Type:
+            <select id="event" required>
+                <option value="">Select an event</option>
+                <option value="workshop">Workshop</option>
+                <option value="seminar">Seminar</option>
+                <option value="conference">Conference</option>
+            </select>
+        </label>
+
+        <p class="error" id="errorMsg"></p>
+
+        <button type="submit">Register</button>
+    </form>
+</div>
+
+<script>
+    document.getElementById("registrationForm").addEventListener("submit", function(e) {
+        e.preventDefault();
+
+        const name = document.getElementById("name").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const phone = document.getElementById("phone").value.trim();
+        const eventType = document.getElementById("event").value;
+        const errorMsg = document.getElementById("errorMsg");
+
+        if (!name || !email || !phone || !eventType) {
+            errorMsg.textContent = "Please fill in all fields.";
+            return;
+        }
+
+        errorMsg.textContent = "";
+        alert("Registration successful!\n\nName: " + name + "\nEvent: " + eventType);
+
+        // Reset form
+        this.reset();
+    });
+</script>
+
+</body>
+</html>
